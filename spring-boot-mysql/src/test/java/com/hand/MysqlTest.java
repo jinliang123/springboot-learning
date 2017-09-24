@@ -45,12 +45,12 @@ public class MysqlTest {
         Department department = new Department();
         department.setName("开发部");
         departmentRepository.save(department);
-        Assert.notNull(department.getId());
+        Assert.notNull(department.getId(),"[Assertion failed] - this argument is required; it must not be null");
 
         Role role = new Role();
         role.setName("admin");
         roleRepository.save(role);
-        Assert.notNull(role.getId());
+        Assert.notNull(role.getId(),"[Assertion failed] - this argument is required; it must not be null");
 
         User user = new User();
         user.setName("user");
@@ -58,18 +58,18 @@ public class MysqlTest {
         user.setDepartment(department);
 
         List<Role> roles = roleRepository.findAll();
-        Assert.notNull(roles);
+        Assert.notNull(roles,"[Assertion failed] - this argument is required; it must not be null");
         user.setRoles(roles);
 
         userRepository.save(user);
-        Assert.notNull(user.getId());
+        Assert.notNull(user.getId(),"[Assertion failed] - this argument is required; it must not be null");
     }
 
     @Test
     public void findPage(){
         Pageable pageable = new PageRequest(0, 10, new Sort(Sort.Direction.ASC, "id"));
         Page<User> page = userRepository.findAll(pageable);
-        Assert.notNull(page);
+        Assert.notNull(page,"[Assertion failed] - this argument is required; it must not be null");
         for(User user : page.getContent()) {
             logger.info("====user==== user name:{}, department name:{}, role name:{}",
                     user.getName(), user.getDepartment().getName(), user.getRoles().get(0).getName());
@@ -79,12 +79,12 @@ public class MysqlTest {
     //@Test
     public void test(){
         User user1 = userRepository.findByNameLike("u%");
-        Assert.notNull(user1);
+        Assert.notNull(user1,"[Assertion failed] - this argument is required; it must not be null");
 
         User user2 = userRepository.readByName("user");
-        Assert.notNull(user2);
+        Assert.notNull(user2,"[Assertion failed] - this argument is required; it must not be null");
 
         List<User> users = userRepository.getByCreatedateLessThan(new Date());
-        Assert.notNull(users);
+        Assert.notNull(users,"[Assertion failed] - this argument is required; it must not be null");
     }
 }

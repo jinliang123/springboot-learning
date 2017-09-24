@@ -2,7 +2,6 @@ package com.hand;
 
 
 
-import com.hand.config.JpaConfiguration;
 import com.hand.domain.Department;
 import com.hand.domain.Role;
 import com.hand.domain.User;

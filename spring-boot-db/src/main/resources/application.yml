@@ -3,7 +3,13 @@ spring:
     url: jdbc:mysql://localhost:3306/springboot_db?characterEncoding=utf8
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
   jpa:
+    database: MYSQL
+    show-sql: true
+  #Hibernate ddl auto (validate|create|create-drop|update)
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
